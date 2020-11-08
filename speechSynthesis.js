@@ -9,10 +9,10 @@ sleep = function(ms) {
 say = function(text, pitch=1) {
   window.speechSynthesis.cancel();
   
-  var u = new SpeechSynthesisUtterance();
-  u.text = text;
-  u.pitch = pitch;
-  return window.speechSynthesis.speak(u);
+  var speech = new SpeechSynthesisUtterance();
+  speech.text = text;
+  speech.pitch = pitch;
+  return window.speechSynthesis.speak(speech);
 };
 
 countdown = async function(seconds) {
