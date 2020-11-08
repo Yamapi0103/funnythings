@@ -3,12 +3,16 @@ var countdown, say, sleep;
 sleep = function(ms) {
   return new Promise(function(resolve) {
     return window.setTimeout(resolve, ms);
-  });
+  });	
 };
 
-say = function(text) {
+say = function(text, pitch=1) {
   window.speechSynthesis.cancel();
-  return window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+  
+  var u = new SpeechSynthesisUtterance();
+  u.text = text;
+  u.pitch = pitch;
+  return window.speechSynthesis.speak(u);
 };
 
 countdown = async function(seconds) {
@@ -17,7 +21,7 @@ countdown = async function(seconds) {
     say(i);
     await sleep(1000); // wait one second
   }
-  return say("三元!");
+  return say("三元!", 10);
 };
 
 countdown(3);
